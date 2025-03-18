@@ -4,6 +4,17 @@
     --box-shadow: 0px 1px 1px rgba 0, 0, 0, 0.364;
 }
 
+@font-face {
+    font-family: "Boldonse Regular";
+    src: url(../font/Boldonse-Regular.ttf);
+}
+
+span {
+    font-family: "Boldonse Regular";
+    font-size: 48px ;
+    line-height: 0;
+}
+
 body {
     font-family: "Anton", serif;
     font-size: 18px;
@@ -381,3 +392,4 @@ h5 {
 .add-to-cart-btn:hover {
     border: 1px solid  #000000;
 }
+
