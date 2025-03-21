@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cart',
     'users',
     'orders',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CART_SESSION_ID = 'cart'
 
 AUTH_USER_MODEL = 'users.User'
+
+STRIPE_PUBLISHABLE_KEY = ''
+STRIPE_SECRET_KEY = ''
+STRIPE_API_VERSION = '2024-12-01'
+
+STRIPE_WEBHOOK_SECRET = ''
