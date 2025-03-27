@@ -393,3 +393,248 @@ h5 {
     border: 1px solid  #000000;
 }
 
+.shop-section {
+    max-width: 1440px;
+    margin: 198px auto 0; /* Отступ сверху 198px */
+    padding: 0 80px; /* Такие же отступы по бокам как в about-container */
+}
+
+.shop-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 60px;
+    text-align: center;
+    color: #000000;
+}
+
+/* Контейнер для карточек */
+.shop-cards-home {
+    display: flex;
+    flex-direction: row; /* Явное указание горизонтального направления */
+    gap: 31px;
+    align-items: stretch; /* Растягивание карточек по высоте */
+    width: 100%; /* Занимает всю доступную ширину */
+    margin: 0; /* Сброс отступов */
+    padding: 0; /* Сброс внутренних отступов */
+}
+
+/* Общие стили для карточек */
+.shop-card-apparel,
+.shop-card-nutrition {
+    width: calc(50% - 15.5px);
+    background: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение содержимого */
+    position: relative; /* Для позиционирования кнопки */
+    min-height: 100%; /* Чтобы карточки были одинаковой высоты */
+}
+
+
+/* Изображения в карточках */
+.shop-image-apparel,
+.shop-image-nutrition {
+    width: 100%;
+    height: 405px;
+}
+
+.shop-image-apparel img,
+.shop-image-nutrition img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Заголовки карточек */
+.shop-title-apparel,
+.shop-title-nutrition {
+    font-size: 37px;
+    font-weight: 700;
+    margin: 32px 0 8px;
+    padding: 0 24px;
+    color: #000000;
+}
+
+/* Текст карточек */
+.shop-text-apparel,
+.shop-text-nutrition {
+    font-size: 24px;
+    line-height: 36px;
+    color: #454545;
+    padding: 0 24px;
+    margin-bottom: 24px;
+}
+
+/* Кнопки */
+.shop-btn-apparel,
+.shop-btn-nutrition {
+    display: inline-block;
+    background: #F8D448;
+    color: #000000;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+    align-self: flex-end; /* Выравнивание по правому краю */
+    margin-top: auto; /* Прижимает кнопку к низу */
+    margin-right: 24px;
+    margin-bottom: 32px;
+}
+
+.shop-btn-apparel:hover,
+.shop-btn-nutrition:hover {
+    background-color: #e6c540;
+}
+
+.black-bar-up {
+    position: relative;
+    width: 100vw;
+    height: 100px;
+    overflow: hidden;
+    margin-left: calc(-50vw + 50%);
+    background-color: #191616;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.black-bar-down {
+    position: relative;
+    width: 100vw;
+    height: 100px;
+    overflow: hidden;
+    margin-left: calc(-50vw + 50%);
+    background-color: #191616;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.franchise-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 95px;
+    background: #F8D448;
+    padding: 14px 24px;
+    border-radius: 8px;
+    color: #1A191C;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.franchise-title {
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 100px;
+    padding: 30px 30px;
+    letter-spacing: 1px;
+}
+
+.franchise-banner {
+    position: relative;
+    height: 550px;
+    width: 100vw;
+    overflow: hidden;
+    margin-left: calc(-50vw + 50%);
+}
+
+.franchise-text {
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 100px;
+    padding: 35px 30px;
+    letter-spacing: 1px;
+}
+
+.trial-section {
+    position: relative;
+    width: 100vw;
+    height: 110px;
+    overflow: hidden;
+    margin-left: calc(-50vw + 50%);
+    background-color: #F8D448;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.trial-title {
+    color: #191616;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 100px;
+    padding: 40px 30px;
+    letter-spacing: 1px;
+}
+
+.trial-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 95px;
+    background: #1A191C;
+    padding: 14px 24px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.footer {
+    height: 423px;
+    left: 0px;
+    right: 0px;
+    background: #191616;
+    padding: 80px;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-divider {
+    border: 1px solid #E6E6E6;
+    margin: 20px 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.footer-link {
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.footer-copyright {
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.social-icons {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    right: 8px;
+    top: 50px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

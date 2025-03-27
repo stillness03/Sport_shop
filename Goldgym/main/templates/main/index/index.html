@@ -4,6 +4,7 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+<<<<<<< HEAD
     <section class="home d-flex flex-column">
         <div class="home-title d-flex flex-column align-items-center">
             <a href="#" class="home-btn mt-4">ALL PRODUCTS</a>
@@ -30,6 +31,78 @@
             {% endfor %}
         </div>
     </section>
+=======
+<section class="wellcome-container">
+     <img src="{% static 'img/Hero.webp' %}" alt="Gold's Gym wellcome Image" class="wellcome-image">
+     <div class="wellcome-content">
+            <svg class="logo-overlay" width="1271" height="88" viewBox="0 0 1271 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_8_40" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="1271" height="88">
+                    <path d="M1271 0H0V87.8109H1271V0Z" fill="white" />
+                </mask>
+                <g mask="url(#mask0_8_40)">
+                    <path d="M1040.04 18.319L1019.15 28.5729L990.4 50.898V57.3879L1013.4 69.3292H935.31L958.466 57.3879V50.898L928.651 27.6644L907.613 18.319H981.622L965.881 27.6644L982.529 39.995L998.874 26.7558L983.132 18.319H1040.04Z" fill="white" />
+                    <path d="M889.296 18.1896V40.7743C874.011 30.9097 857.515 25.9774 839.661 25.9774C831.79 25.9774 825.587 27.6648 821.046 30.9097C816.657 34.1546 814.387 38.8273 814.387 44.798C814.387 56.4797 823.164 62.1905 840.568 62.1905C848.591 62.1905 855.098 60.8926 859.937 58.2969V55.5711L834.213 43.5H913.359L890.355 55.5711V71.7955L876.434 66.4741C863.419 69.9787 849.796 71.7955 835.874 71.7955C819.073 71.7955 805 69.1998 793.653 64.1378C782.301 59.0758 776.548 52.7156 776.548 45.1873C776.548 37.2697 782.757 30.5203 795.163 24.939C807.575 19.228 822.403 16.5022 839.661 16.5022C854.337 16.5022 867.054 18.7088 877.493 23.2517L889.296 18.1896Z" fill="white" />
+                    <path d="M444.356 41.942V69.3292H321.618L344.622 57.5174V30.2603L321.618 18.319H400.315L377.161 30.2603V59.2053H416.055L444.356 41.942Z" fill="white" />
+                    <path d="M158.62 18.1896V40.7742C143.334 30.9096 126.838 25.9773 108.98 25.9773C101.11 25.9773 94.9047 27.6647 90.3649 30.9096C85.9759 34.2844 83.7053 38.8273 83.7053 44.7979C83.7053 56.4796 92.4832 62.1905 109.887 62.1905C117.908 62.1905 124.416 60.8926 129.259 58.2969V55.5711L103.531 43.5H182.986L159.982 55.5711V71.7955L146.059 66.3441C133.043 69.9788 119.422 71.7955 105.498 71.7955C88.7 71.7955 74.625 69.1998 63.2744 64.1378C51.9239 59.0758 46.1729 52.8453 46.1729 45.3171C46.1729 37.5293 52.3778 30.7799 64.7878 25.0688C77.1981 19.3577 92.0291 16.632 109.282 16.632C123.962 16.632 136.675 18.8385 147.269 23.3814L158.62 18.1896Z" fill="white" />
+                    <path d="M254.274 16.5022C270.165 16.5022 284.089 19.3577 295.742 25.0688C307.546 30.7799 313.297 37.5293 313.297 45.3171C313.297 52.456 307.395 58.6864 295.59 64.0078C283.786 69.1998 269.711 71.7955 253.366 71.7955C237.324 71.7955 223.4 69.1998 211.293 63.8784C199.186 58.5564 193.133 52.456 193.133 45.447C193.133 37.5293 199.186 30.7799 211.142 25.0688C223.249 19.3577 237.627 16.5022 254.274 16.5022ZM253.214 25.3284C246.707 25.3284 241.259 27.0158 237.173 30.5203C233.086 33.895 230.967 38.4379 230.967 43.8894C230.967 49.3408 233.086 53.6241 237.021 56.869C241.108 60.1142 246.556 61.8016 253.214 61.8016C259.874 61.8016 265.322 60.2437 269.408 56.869C273.494 53.6241 275.462 49.211 275.462 43.7596C275.462 38.3081 273.343 33.895 269.257 30.3905C265.17 27.1456 259.874 25.3284 253.214 25.3284Z" fill="white" />
+                    <path d="M447.986 18.319H530.619C540.002 18.319 547.569 18.8381 552.866 19.8765C558.314 20.9149 563.612 22.9917 568.757 25.8472C578.746 31.5582 583.74 37.6587 583.74 44.5379C583.74 51.8066 578.594 57.7774 568.303 62.3199C558.012 66.863 544.694 69.1992 528.349 69.1992H447.835L470.991 57.3879V30.1305L447.986 18.319ZM503.529 59.2053H518.966C529.863 59.2053 537.127 58.1669 540.607 56.3495C544.239 54.4025 545.904 50.5086 545.904 44.6677C545.904 33.1158 536.976 27.275 519.117 27.275H503.377V59.2053H503.529Z" fill="white" />
+                    <path d="M579.804 9.62277H612.948L596.452 36.2311L579.804 9.62277Z" fill="white" />
+                    <path d="M619.914 71.276V45.7063C625.513 50.8982 633.232 55.0517 643.221 58.0369C653.058 61.0226 663.952 62.4499 675.907 62.4499C688.472 62.4499 694.674 61.1521 694.674 58.4263C694.674 57.1285 693.92 56.3497 692.106 55.8305C690.438 55.4411 686.353 54.9219 679.998 54.5325L666.223 53.6239C650.182 52.7154 638.983 51.028 632.324 48.9512C621.73 45.5765 616.433 40.6442 616.433 34.414C616.433 28.5731 619.914 23.9004 627.027 20.5257C634.14 17.151 643.826 15.4637 656.236 15.4637C668.195 15.4637 678.939 16.7616 688.319 19.4874L691.047 20.2661L708.755 15.853V37.3993C692.258 28.7029 674.702 24.2898 655.933 24.2898C644.583 24.2898 638.983 25.5878 638.983 28.3135C638.983 29.6115 640.345 30.5201 643.069 31.169C645.793 31.818 650.939 32.3372 658.507 32.8564L671.823 33.765C688.624 34.9332 699.825 36.4907 705.425 38.6973C714.957 42.3316 719.796 47.3937 719.796 53.4941C719.796 59.0753 716.017 63.4883 708.45 66.7335C700.884 69.9782 690.742 71.6655 678.032 71.6655C664.409 71.6655 650.485 69.8487 636.108 66.0846L619.914 71.276Z" fill="white" />
+                    <path d="M1201.97 18.3191L1178.82 30.1305V57.3879L1201.97 69.3292H1139.32L1160.96 57.3879V25.977L1137.35 69.3292H1120.4L1096.94 24.2897V57.3879L1118.73 69.3292H1042.31L1065.46 57.3879V30.1305L1042.31 18.1892H1112.83L1124.79 41.2931L1137.35 18.1892H1201.97V18.3191Z" fill="white" />
+                    <path d="M1220.89 62.1904C1220.89 60.7626 1219.68 60.2437 1217.41 60.2437H1214.38V66.7335H1216.19V64.0078H1217.1L1219.07 66.7335H1221.19L1219.07 63.8778C1219.98 63.8778 1220.89 63.3583 1220.89 62.1904ZM1217.71 62.9694H1216.19V61.4115H1217.41C1218.02 61.4115 1218.92 61.4115 1218.92 62.0604C1218.92 62.8394 1218.47 62.9694 1217.71 62.9694Z" fill="white" />
+                    <path d="M1217.41 57.1285C1213.32 57.1285 1209.99 59.9837 1209.99 63.4883C1209.99 66.993 1213.32 69.8482 1217.41 69.8482C1221.49 69.8482 1224.82 66.993 1224.82 63.4883C1224.82 59.9837 1221.49 57.1285 1217.41 57.1285ZM1217.41 68.4209C1214.22 68.4209 1211.5 66.4735 1211.5 63.6183C1211.5 60.7626 1214.08 58.8158 1217.25 58.8158C1220.43 58.8158 1223 60.7626 1223.15 63.6183C1223.3 66.3441 1220.58 68.4209 1217.41 68.4209Z" fill="white" />
+                </g>
+            </svg>
+            <a href="#" class="find-btn">FIND A CLUB</a>
+     </div>
+</section>
+<div class="about-container">
+    <div class="about-content">
+        <h1 class="about-title">SIXTY YEARS OF SERIOUS TRAINING</h1>
+        <p class="about-text">For 60 years no other gym has been responsible for more life-changing transformations and fitness achievements than Gold's Gym. From a small gym in Venice Beach, California to the most well-known traditional fitness company in the world spanning 6 continents.</p>
+    </div>
+    <div class="about-image">
+        <img src="{% static 'img/about_img.webp' %}" alt="Gold's Gym About Image">
+    </div>
+</div>
+<section class="shop-section">
+    <h1 class="shop-title">Explore Gold’s Gym Store</h1>
+    <div class="shop-cards-home">
+        <div class="shop-card-apparel">
+            <div class="shop-image-apparel">
+                <img src="{% static 'img/apparel.webp' %}" alt="Gold's Gym Apparel">
+            </div>
+                <h3 class="shop-title-apparel">Apparel</h3>
+                <p class="shop-text-apparel">Stay comfortable and stylish in every workout with Gold's Gym clothing. Our range is designed for performance and durability so that you can move freely and look fantastic at the gym and beyond.</p>
+                <a href="#" class="shop-btn-apparel">Shop Apparel</a>
+        </div>
+            <div class="shop-card-nutrition">
+                <div class="shop-image-nutrition">
+                    <img src="{% static 'img/nutrition.webp' %}" alt="Gold's Gym Nutrition">
+                </div>
+                <h3 class="shop-title-nutrition">Nutrition</h3>
+                <p class="shop-text-nutrition">Power up your workouts with our premium supplements. Whether it's vitamins or protein powders, we provide the essentials to keep you energized, healthy, and ready to recover after every session.</p>
+                <a href="#" class="shop-btn-nutrition">Shop Nutrition</a>
+            </div>
+        </div>
+</section>
+<section class="franchise-section">
+    <div class="black-bar-up">
+        <h2 class="franchise-title">Own a Franchise</h2>
+    </div>
+        <div class="franchise-banner">
+            <img src="{% static 'img/franchise.webp' %}" alt="Gold's Gym Franchise Opportunity">
+        </div>
+    <div class="black-bar-down">
+        <p class="franchise-text">Gold's Gym offers franchising opportunities both domestically.</p>
+        <a href="#" class="franchise-btn">LEARN MORE</a>
+    </div>
+</section>
+<section class="trial-section">
+    <h2 class="trial-title">Not sure yet? try us for free!</h2>
+    <a href="#" class="trial-btn">CLAIM FREE PASS</a>
+</section>
+>>>>>>> 8224f2d (Created footer and add new styles)
 {% endblock content %}
 
 
