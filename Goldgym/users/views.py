@@ -10,6 +10,7 @@ from orders.models import Order, OrderItem
 
 
 def login(request):
+    next_url = request.GET.get('next', reverse('main:product_list'))
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():

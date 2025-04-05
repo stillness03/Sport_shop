@@ -41,7 +41,6 @@
                         </div>
                     {% endwith %}
                 {% endfor %}
-
                 <form action="{% url "payment:process" %}" method="post" class="payform">
                     <input type="submit" value="Pay now" class="paynow">
                     {% csrf_token %}

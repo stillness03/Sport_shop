@@ -4,7 +4,7 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-    <div class="d-flex">
+    <div>
         <div class="windowp d-flex bg-white p-4 mb-4 mx-2 rounded">
             <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
                 <h2 class="mb-2">Profile</h2>
@@ -54,7 +54,6 @@
                     <button type="submit" class="profile-btn">Save</button>
                     <a class="profile-btn" href="{% url "user:logout" %}">Logout</a>
                 </div>
-                
             </form>
             <div class="orders">
                 <h2 class="mb-2">Your Orders</h2>   
@@ -83,5 +82,5 @@
                 {% endif %}         
             </div>
         </div>
+    </div>
 {% endblock content %}
-

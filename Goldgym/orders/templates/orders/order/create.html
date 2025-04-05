@@ -4,7 +4,7 @@
 {% block title %}Create Order{% endblock title %}
 
 {% block content %}
-    <div class="forcreate">
+    <div class="forcreate d-flex">
         <div class="profile bg-white p-4 mb-4 mx-2">
             <h2 class="mb-2">Create Order</h2>
             <form action="" method="post" class="order-form">
@@ -40,21 +40,21 @@
                     <input type="text" class="form-control form-styleprofile" id="id_city"
                     name="city" placeholder="Your City" value="{{ form.city.value|default:'' }}" required>
                 </div>
-                <p><input type="submit" value="Place Order"></p>
+                <div class="checkout">
+                    <h1>Checkout</h1>
+                    <div class="order-info">
+                        {% for item in cart %}
+                            <li>
+                                {{ item.quantity }}x {{ item.product.name }}
+                                <p>$ {{ item.total_price }}</p>
+                            </li>
+                            <p>Total: $ {{ cart.get_total_price }}</p>
+                        {% endfor %}
+                        <p><input type="submit" value="Place Order" class="checkout-btn"></p>
+                    </div>
+                </div>
                 {% csrf_token %}
             </form>
-        </div>
-        <div class="checkout">
-            <h1>Checkout</h1>
-            <div class="order-info">
-                {% for item in cart %}
-                    <li>
-                        {{ item.quantity }}x {{ item.product.name }}
-                        <p>$ {{ item.total_price }}</p>
-                    </li>
-                    <p>Total: $ {{ cart.get_total_price }}</p>
-                {% endfor %}
-            </div>
         </div>
     </div>
 {% endblock content %}

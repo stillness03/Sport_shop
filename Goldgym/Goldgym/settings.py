@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from .secret import name, user, password, host, port
+from .secret import stripe_publishable_key, stripe_secret_key, stripe_api_version, stripe_webhook_secret
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,7 +61,7 @@ ROOT_URLCONF = 'Goldgym.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS':  [os.path.join(BASE_DIR, 'Goldgym', 'cart', 'templates')],
+        'DIRS':  [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,11 +84,11 @@ WSGI_APPLICATION = 'Goldgym.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Goldgym',
-        'USER': 'Goldgym',
-        'PASSWORD': '223534678',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': name,
+        'USER': user,
+        'PASSWORD': password,
+        'HOST': host,
+        'PORT': port,
     }
 }
 
@@ -132,8 +134,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -141,8 +141,16 @@ CART_SESSION_ID = 'cart'
 
 AUTH_USER_MODEL = 'users.User'
 
+<<<<<<< HEAD
 STRIPE_PUBLISHABLE_KEY = ''
 STRIPE_SECRET_KEY = ''
 STRIPE_API_VERSION = '2024-12-01'
 
 STRIPE_WEBHOOK_SECRET = ''
+=======
+STRIPE_PUBLISHABLE_KEY = stripe_publishable_key
+STRIPE_SECRET_KEY = stripe_secret_key
+STRIPE_API_VERSION = stripe_api_version
+
+STRIPE_WEBHOOK_SECRET = stripe_webhook_secret
+>>>>>>> a47ffd9 (fixing styles and fixin some mistakes in files)
