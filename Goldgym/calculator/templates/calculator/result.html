@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Calculation results</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Your indicators</h4>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p><strong>Gender:</strong> {{ profile.get_gender_display }}</p>
+                    <p><strong>Age:</strong> {{ profile.age }}</p>
+                    <p><strong>Height:</strong> {{ profile.height }} cm</p>
+                    <p><strong>Weight:</strong> {{ profile.weight }} kg</p>
+                    <p><strong>Activity level:</strong> {{ profile.get_activity_level_display }}</p>
+                    <p><strong>Goal:</strong> {{ profile.get_goal_display }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="alert alert-info">
+                        <h5>Results:</h5>
+                        <p><strong>Your base metabolic rate (BMR):</strong> {{ bmr }} kcal</p>
+                        <p><strong>Your daily calories intake:</strong> {{ daily_calories }} kcal</p>
+
+                        {% if profile.goal|slice:":4" == 'lose' %}
+                            <p><strong>To lose weight you need to consume approximately:</strong> {{ target_calories }} kcal per day</p>
+                        {% elif profile.goal|slice:":4" == 'gain' %}
+                            <p><strong>To gain weight, you need to consume approximately:</strong> {{ target_calories }} kcal per day</p>
+                        {% else %}
+                            <p><strong>To maintain your weight, you need to consume approximately:</strong> {{ target_calories }} kcal per day</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 alert alert-warning">
+                <p>Be careful and take care of your health by consuming enough essential nutrients and not just "empty" calories.</p>
+            </div>
+
+            <a href="{% url 'calculator:calculator' %}" class="btn-recalculate">Recalculate</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

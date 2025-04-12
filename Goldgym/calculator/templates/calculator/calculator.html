@@ -1,0 +1,63 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">Calorie calculator</h2>
+                    <p class="text-center text-muted mb-4"><strong>Based on the Mifflin-San Jeor formula</strong></p>
+
+                    <form method="post" class="calorie-form">
+                        {% csrf_token %}
+
+                        <div class="mb-4">
+                            <label class="form-label">Gender:</label>
+                            <div class="gender-selection">
+                                {% for radio in form.gender %}
+                                <div class="form-check form-check-inline gender-radio">
+                                    {{ radio.tag }}
+                                    <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                        {{ radio.choice_label }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Age:</label>
+                            {{ form.age }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Height, cm:</label>
+                            {{ form.height }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Weight, kg:</label>
+                            {{ form.weight }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Activity level:</label>
+                            {{ form.activity_level }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Goal:</label>
+                            {{ form.goal }}
+                        </div>
+
+                        <div class="btn-submit">
+                            <button type="submit" class="btn btn-calculate">Calculate</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
