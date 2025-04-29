@@ -1512,3 +1512,104 @@ h5 {
 .gender-radio input[type="radio"]:checked + label:after {
     opacity: 1;
 }
+
+/**/
+.gym-locator-wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.gym-locator-container {
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.gym-map-container {
+    flex: 1;
+    position: relative;
+}
+
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+#gym-list {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    flex-grow: 1;
+    border-radius: 0;
+
+}
+
+.gym-cards-overlay {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.gym-card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.gym-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.gym-card .card-body {
+    padding: 15px;
+}
+
+.gym-card .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.gym-card .card-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-outline-primary {
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+}
+
