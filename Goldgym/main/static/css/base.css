@@ -1525,7 +1525,7 @@ h5 {
     height: auto;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
 }
 
@@ -1541,6 +1541,7 @@ h5 {
 }
 
 #gym-list {
+    height: 400px;
     max-height: calc(100vh - 200px);
     overflow-y: auto;
     padding-right: 10px;
@@ -1555,6 +1556,15 @@ h5 {
 
 }
 
+.leaflet-control-container {
+    display: none !important;
+}
+
+.card-img-top{
+    height: 150px;
+    width: 150px;
+}
+
 .gym-cards-overlay {
     width: 100%;
     max-width: 800px;
@@ -1566,8 +1576,11 @@ h5 {
 }
 
 .search-box {
-    margin-bottom: 20px;
+    margin: auto 20px auto;
+    width: 100%;
+    max-width: 470px;
 }
+
 
 .search-box input {
     border-radius: 20px;

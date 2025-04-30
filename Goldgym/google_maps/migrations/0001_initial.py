@@ -14,13 +14,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Gym',
             fields=[
-                ('id', models.BigAutoField(auto_created=True,
-                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('address', models.TextField()),
                 ('latitude', models.DecimalField(decimal_places=6, max_digits=9)),
                 ('longitude', models.DecimalField(decimal_places=6, max_digits=9)),
-                ('amenities', models.TextField(help_text=',')),
+                ('amenities', models.TextField(help_text='Разделяйте запятыми')),
                 ('opening_hours', models.CharField(max_length=100)),
                 ('promo_text', models.CharField(blank=True, max_length=200)),
                 ('promo_price', models.CharField(blank=True, max_length=50)),

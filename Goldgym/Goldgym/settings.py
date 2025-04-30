@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 from .secret import name, user, password, host, port
 from .secret import stripe_publishable_key, stripe_secret_key, stripe_api_version, stripe_webhook_secret
-from .secret import google_api_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -157,8 +156,11 @@ STRIPE_API_VERSION = stripe_api_version
 
 STRIPE_WEBHOOK_SECRET = stripe_webhook_secret
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a47ffd9 (fixing styles and fixin some mistakes in files)
 =======
 
 GOOGLE_MAPS_API_KEY = google_api_key
 >>>>>>> 43d57e6 (Add google_maps(for searching gyms))
+=======
+>>>>>>> 68ee3a6 (	new file:   Goldgym/main/static/img/marker.png)

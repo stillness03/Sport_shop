@@ -5,7 +5,7 @@
 
 <div class="gym-locator-wrapper d-flex">
     <div class="gym-list-container">
-        <h1 class="text-center my-4">FIND YOUR GYM</h1>
+        <h1 class="text-center my-3">FIND YOUR GYM</h1>
         <div class="search-box mb-4">
             <input type="text" id="gym-search" class="form-control" placeholder="Search by gym name, address or city...">
         </div>
@@ -41,13 +41,15 @@
                         </div>
                         <div class="col-md-6">
                             <h5>OPENING HOURS</h5>
-                            <p id="detail-gym-hours"></p>
+                            <p><strong>Weekdays:</strong> <span id="detail-opening-hours-weekdays"></span></p>
+                            <p><strong>Saturday:</strong> <span id="detail-opening-hours-saturday"></span></p>
+                            <p><strong>Sunday:</strong> <span id="detail-opening-hours-sunday"></span></p>
                         </div>
                     </div>
 
-                    <div class="mt-4">
-                        <p>Explore membership options tailored to you!</p>
-                        <a href="#" class="btn btn-primary">JOIN NOW</a>
+                    <div class="mt-3">
+                        <p><strong>Phone:</strong> <span id="detail-gym-phone"></span></p>
+                        <p><strong>Email:</strong> <span id="detail-gym-email"></span></p>
                     </div>
                 </div>
             </div>
@@ -61,14 +63,30 @@
 </div>
 
 <script src="{% static 'js/gym_search.js' %}"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
-function initMap() {
-    const center = { lat: 40.7128, lng: -74.0060 };
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: center,
-    });
-}
+  const map = L.map('map', {
+    center: [40.7128, -74.0060],
+    zoom: 13,
+    zoomControl: false,
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    noWrap: true
+  }).addTo(map);
+
+  const customIcon = L.icon({
+    iconUrl: "{% static 'img/marker.png' %}",
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+  {% for gym in gyms %}
+  L.marker([{{ gym.latitude }}, {{ gym.longitude }}], { icon: customIcon })
+      .addTo(map)
+      .bindPopup(`<strong>{{ gym.name }}</strong><br>{{ gym.address }}`);
+  {% endfor %}
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_key }}&callback=initMap" async defer></script>
 {% endblock %}
