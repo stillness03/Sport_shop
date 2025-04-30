@@ -62,31 +62,10 @@
     </div>
 </div>
 
+<script src="{% static 'js/gym_detail.js' %}"></script>
 <script src="{% static 'js/gym_search.js' %}"></script>
+{{ gyms|json_script:"gyms-data" }}
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-<script>
-  const map = L.map('map', {
-    center: [40.7128, -74.0060],
-    zoom: 13,
-    zoomControl: false,
-  });
-
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    noWrap: true
-  }).addTo(map);
-
-  const customIcon = L.icon({
-    iconUrl: "{% static 'img/marker.png' %}",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
-});
-
-  {% for gym in gyms %}
-  L.marker([{{ gym.latitude }}, {{ gym.longitude }}], { icon: customIcon })
-      .addTo(map)
-      .bindPopup(`<strong>{{ gym.name }}</strong><br>{{ gym.address }}`);
-  {% endfor %}
-</script>
+<script src="{% static 'js/map.js' %}"></script>
 {% endblock %}

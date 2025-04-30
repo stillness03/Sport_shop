@@ -3,12 +3,9 @@ from django.http import JsonResponse
 from .models import Gym
 
 def gym_locator(request):
-    gyms = Gym.objects.all()
-    for gym in gyms:
-        gym.amenities_list = gym.amenities.split(',')
-    return render(request, 'google_maps/map.html', {
-        'gyms': gyms,
-    })
+    gyms = Gym.objects.exclude(latitude__isnull=True).exclude(longitude__isnull=True)
+    gym_data = list(gyms.values('id', 'name', 'address', 'latitude', 'longitude'))
+    return render(request, 'google_maps/map.html', {'gyms': gym_data})
 
 def gym_detail_api(request, gym_id):
     gym = get_object_or_404(Gym, id=gym_id)
