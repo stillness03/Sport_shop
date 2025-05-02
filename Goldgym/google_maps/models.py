@@ -1,4 +1,5 @@
 from django.db import models
+from .utils import is_gym_open
 
 class Gym(models.Model):
     name = models.CharField(max_length=255)
@@ -14,6 +15,8 @@ class Gym(models.Model):
     email = models.EmailField(blank=True)
     image = models.ImageField(upload_to='gyms/', null=True, blank=True)
 
+    def is_gym_open(self):
+        return is_gym_open(self)
 class GymImage(models.Model):
     gym = models.ForeignKey(Gym, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='gyms/images/', blank=True)

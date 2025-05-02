@@ -6,18 +6,24 @@
 <div class="gym-locator-wrapper d-flex">
     <div class="gym-list-container">
         <h1 class="text-center my-3">FIND YOUR GYM</h1>
-        <div class="search-box mb-4">
-            <input type="text" id="gym-search" class="form-control" placeholder="Search by gym name, address or city...">
+        <div class="search-box mb-4 position-relative">
+            <input type="text" id="gym-search" class="form-control pe-5" placeholder="Search by gym name, address or city...">
+            <button id="search-button" class="btn search-icon-button" type="button">
+                <img src="{% static 'img/search-icon.png' %}" alt="Search" />
+            </button>
         </div>
 
         <div id="gym-list">
             {% for gym in gyms %}
-            <div class="gym-card mb-4" data-gym-id="{{ gym.id }}">
+            <div class="gym-card mb-4 border rounded" data-gym-id="{{ gym.id }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ gym.name }}</h5>
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <h5 class="card-title mb-0">${gym.name}</h5>
+                            <div class="text-end">
+                                <span class="badge ">{{ gym.status }} miles away</span>
+                                <span class="text-muted small">{{ gym.distance }} miles away</span>
+                            </div>
                         <p class="card-text text-muted">{{ gym.address }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-success">{{ gym.distance }} miles away</span>
                             <a href="#" class="btn btn-sm btn-outline-primary">VISIT GYM PAGE →</a>
                         </div>
                     </div>
@@ -32,7 +38,8 @@
                     <h2 id="detail-gym-name"></h2>
                     <p class="text-muted" id="detail-gym-address"></p>
                     <img id="detail-gym-image" class="card-img-top mb-3" alt="Gym image">
-                    <p class="mb-3"><span class="badge bg-success" id="detail-gym-distance"></span></p>
+                    <p class="mb-3"><span class="text-muted small" id="detail-gym-distance"></span></p>
+                    <p class="mb-3"><span id="detail-gym-status" class="badge"></span></p>
 
                     <div class="row">
                         <div class="col-md-6">

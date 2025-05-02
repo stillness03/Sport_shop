@@ -5,6 +5,15 @@ function loadGymDetail(gymId) {
             document.getElementById('detail-gym-name').textContent = gym.name;
             document.getElementById('detail-gym-address').textContent = gym.address;
             document.getElementById('detail-gym-distance').textContent = gym.distance + " miles away";
+            const statusBadge = document.getElementById('detail-gym-status');
+            if (gym.status) {
+                statusBadge.textContent = 'OPEN';
+                statusBadge.className = 'badge border border-success text-success';
+            } else {
+                statusBadge.textContent = 'CLOSED';
+                statusBadge.className = 'badge border border-danger text-danger';
+            }
+
 
             const img = document.getElementById('detail-gym-image');
             img.src = gym.image_url || '/static/img/noimage.jpg';

@@ -4,7 +4,7 @@ let markers = [];
 document.addEventListener("DOMContentLoaded", function () {
   const gymsData = JSON.parse(document.getElementById("gyms-data").textContent);
 
-  map = L.map("map", {
+  map = window.map = L.map("map", {
     center: [40.7128, -74.006],
     zoom: 12,
     zoomControl: false,
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }
-  ).addTo(map);
+  ).addTo(window.map);
 
   const customIcon = L.icon({
     iconUrl: "/static/img/marker.png",
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function addMarkers(gyms, customIcon) {
+  if (!map) return;
   markers.forEach((marker) => map.removeLayer(marker));
   markers = [];
 
@@ -45,6 +46,7 @@ function addMarkers(gyms, customIcon) {
       })
         .addTo(map)
         .bindPopup(`<b>${gym.name}</b><br>${gym.address}`);
+
       marker.on("click", () => {
         window.loadGymDetail(gym.id);
       });
@@ -106,21 +108,35 @@ function updateVisibleGyms(gyms) {
     cities[city].forEach((gym) => {
       const gymCard = document.createElement("div");
       gymCard.className = "gym-card mb-3";
+      gymCard.setAttribute("data-lat", gym.latitude);
+      gymCard.setAttribute("data-lng", gym.longitude);
+      gymCard.setAttribute("data-city", city);
       gymCard.setAttribute("data-gym-id", gym.id);
+      gymCard.setAttribute("data-gym-status", gym.status);
+
+      const isOpen = gym.status?.toLowerCase() === "open";
+      const statusText = isOpen ? "OPEN" : "CLOSED";
+      const statusClass = isOpen
+        ? "badge border border-success text-success"
+        : "badge border border-danger text-danger";
+
       gymCard.innerHTML = `
                 <div class="card-body">
-                    <h5 class="card-title">${gym.name}</h5>
-                    <p class="card-text text-muted">${gym.address}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="badge bg-success">${Math.round(
-                          center.distanceTo(
-                            L.latLng(gym.latitude, gym.longitude)
-                          ) / 1000
-                        )} km away</span>
-                        <button class="btn btn-sm btn-outline-primary view-gym-btn" data-gym-id="${
-                          gym.id
-                        }">VIEW DETAILS →</button>
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                        <h5 class="card-title mb-0">${gym.name}</h5>
+                        <div class="text-end">
+                            <span class="${statusClass}">${statusText}</span>
+                            <span class="text-muted small">${Math.round(
+                              center.distanceTo(
+                                L.latLng(gym.latitude, gym.longitude)
+                              ) / 1000
+                            )} km away</span>
+                        </div>
                     </div>
+                    <p class="card-text text-muted">${gym.address}</p>
+                    <button class="btn btn-sm btn-outline-primary view-gym-btn" data-gym-id="${
+                      gym.id
+                    }">VIEW DETAILS →</button>
                 </div>
             `;
       gymList.appendChild(gymCard);
@@ -151,9 +167,9 @@ function initGymCardHandlers() {
 }
 
 function extractCityFromAddress(address) {
-  const parts = address.split(",");
-  if (parts.length >= 2) {
-    return parts[parts.length - 2].trim();
+  if (!address || typeof address !== "string") {
+    return "";
   }
-  return address;
+  const parts = address.split(",");
+  return parts.length > 1 ? parts[1].trim() : parts[0].trim();
 }
