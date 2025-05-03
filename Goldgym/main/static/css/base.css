@@ -1564,6 +1564,12 @@ h5 {
     display: none !important;
 }
 
+.cards-body {
+    padding: 30px;
+    width: 520px;
+    max-width: 55vh;
+}
+
 .card-img-top{
     height: 150px;
     width: 150px;
@@ -1624,6 +1630,49 @@ h5 {
 .gym-status.closed {
     color: #FF033E;
     border-color: #EF0037;
+}
+
+.gym-gallery {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.gym-gallery h5 {
+    margin-bottom: 1rem;
+}
+
+#gym-additional-images {
+    gap: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd #f8f9fa;
+}
+#gym-additional-images img {
+    border-radius: 8px;
+    height: 100px;
+    object-fit: cover;
+}
+
+#gym-additional-images::-webkit-scrollbar {
+    height: 6px;
+}
+
+#gym-additional-images::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+#gym-additional-images::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 3px;
+}
+
+.gym-gallery img {
+    transition: transform 0.3s ease;
+}
+
+.gym-gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .gym-card {

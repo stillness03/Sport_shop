@@ -1,24 +1,7 @@
+import datetime
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from .models import Gym
-from .utils import is_gym_open
-
-# Added only to check errors
-import logging
-logger = logging.getLogger(__name__)
-
-
-def gym_detail_api(request, gym_id):
-    try:
-        gym = get_object_or_404(Gym, id=gym_id)
-        logger.info(f"Loading gym: {gym.name}")
-        logger.info(
-            f"Time: {gym.opening_hours_weekdays} / {gym.opening_hours_saturday} / {gym.opening_hours_sunday}")
-        ...
-    except Exception as e:
-        logger.exception("Error in louding gym_detail_api")
-        return JsonResponse({'error': 'Internal server error'}, status=500)
-# /
 
 
 def gym_locator(request):
@@ -40,6 +23,12 @@ def gym_locator(request):
 def gym_detail_api(request, gym_id):
     try:
         gym = get_object_or_404(Gym, id=gym_id)
+
+        additional_images = []
+        if hasattr(gym, 'images'):
+            additional_images = [
+                img.image.url for img in gym.images.all() if img.image]
+
         data = {
             'id': gym.id,
             'name': gym.name,
@@ -51,9 +40,51 @@ def gym_detail_api(request, gym_id):
             'phone': gym.phone,
             'email': gym.email,
             'image_url': gym.image.url if gym.image else None,
+            'additional_images': additional_images,
             'is_open': is_gym_open(gym),
-            'status': 'OPEN' if is_gym_open(gym) else 'CLOSED',
+            'status': 'OPEN' if is_gym_open(gym) else 'CLOSED'
         }
         return JsonResponse(data)
     except Gym.DoesNotExist:
         return JsonResponse({'error': 'Gym not found'}, status=404)
+
+
+def parse_hours(hours_str):
+    if not hours_str:
+        return None, None
+    try:
+        start_str, end_str = hours_str.split('-')
+        try:
+            start = datetime.datetime.strptime(
+                start_str.strip(), "%I %p").time()
+            end = datetime.datetime.strptime(end_str.strip(), "%I %p").time()
+        except ValueError:
+            start = datetime.datetime.strptime(
+                start_str.strip(), "%I:%M %p").time()
+            end = datetime.datetime.strptime(
+                end_str.strip(), "%I:%M %p").time()
+        return start, end
+    except:
+        return None, None
+
+
+def is_gym_open(gym):
+    now = datetime.datetime.now()
+    current_time = now.time()
+    weekday = now.weekday()
+
+    if weekday < 5:
+        hours = gym.opening_hours_weekdays
+    elif weekday == 5:
+        hours = gym.opening_hours_saturday
+    else:
+        hours = gym.opening_hours_sunday
+
+    start, end = parse_hours(hours)
+    if start and end:
+        if start < end:
+            return start <= current_time <= end
+        else:
+
+            return current_time >= start or current_time <= end
+    return False

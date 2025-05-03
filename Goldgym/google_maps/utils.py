@@ -17,7 +17,7 @@ def parse_hours(hours_str):
                 end_str.strip(), "%I:%M %p").time()
         return start, end
     except Exception as e:
-        print(f"Error in parse_hours: {e}, input={hours_str}")
+        print(f"Error in  parse_hours: {e}, input={hours_str}")
         return None
 
 

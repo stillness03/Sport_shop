@@ -61,7 +61,6 @@ function updateVisibleGyms(gyms) {
 
   const bounds = map.getBounds();
   const center = bounds.getCenter();
-
   const visibleGyms = gyms.filter((gym) => {
     if (!gym.latitude || !gym.longitude) return false;
 
@@ -121,7 +120,7 @@ function updateVisibleGyms(gyms) {
         : "badge border border-danger text-danger";
 
       gymCard.innerHTML = `
-                <div class="card-body">
+                <div class="cards-body">
                     <div class="d-flex justify-content-between align-items-start mb-1">
                         <h5 class="card-title mb-0">${gym.name}</h5>
                         <div class="text-end">

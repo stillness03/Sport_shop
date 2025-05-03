@@ -16,7 +16,7 @@
         <div id="gym-list">
             {% for gym in gyms %}
             <div class="gym-card mb-4 border rounded" data-gym-id="{{ gym.id }}">
-                    <div class="card-body">
+                    <div class="cards-body">
                         <div class="d-flex justify-content-between align-items-start mb-1">
                             <h5 class="card-title mb-0">${gym.name}</h5>
                             <div class="text-end">
@@ -33,11 +33,11 @@
 
         <div id="gym-detail" style="display: none;">
             <div class="card mt-4">
-                <div class="card-body">
+                <div class="cards-body">
                     <button id="back-to-list" class="btn btn-sm btn-secondary mb-3">← Back to list</button>
                     <h2 id="detail-gym-name"></h2>
                     <p class="text-muted" id="detail-gym-address"></p>
-                    <img id="detail-gym-image" class="card-img-top mb-3" alt="Gym image">
+                    <div id="gym-additional-images" class="d-flex overflow-auto mb-2"></div>
                     <p class="mb-3"><span class="text-muted small" id="detail-gym-distance"></span></p>
                     <p class="mb-3"><span id="detail-gym-status" class="badge"></span></p>
 

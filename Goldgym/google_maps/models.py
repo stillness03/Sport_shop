@@ -1,6 +1,7 @@
 from django.db import models
 from .utils import is_gym_open
 
+
 class Gym(models.Model):
     name = models.CharField(max_length=255)
     city = models.CharField(max_length=100, null=True, blank=True)
@@ -15,18 +16,18 @@ class Gym(models.Model):
     email = models.EmailField(blank=True)
     image = models.ImageField(upload_to='gyms/', null=True, blank=True)
 
+    def get_amenities_list(self):
+        return [a.strip() for a in self.amenities.split(',')]
+
     def is_gym_open(self):
         return is_gym_open(self)
+
+
 class GymImage(models.Model):
     gym = models.ForeignKey(Gym, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='gyms/images/', blank=True)
     is_main = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.gym.name} - {self.image.name}"
-
-    def get_amenities_list(self):
-        return [a.strip() for a in self.amenities.split(',')]
-
-    def __str__(self):
-        return self.name
+        return f"Image for {self.gym.name}"
