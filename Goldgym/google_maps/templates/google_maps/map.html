@@ -34,12 +34,16 @@
         <div id="gym-detail" style="display: none;">
             <div class="card mt-4">
                 <div class="cards-body">
-                    <button id="back-to-list" class="btn btn-sm btn-secondary mb-3">← Back to list</button>
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <button id="back-to-list" class="btn btn-sm btn-secondary">← Back to list</button>
+                        <div class="d-flex align-items-center gap-1">
+                            <span id="detail-gym-status" class="badge"></span><br>
+                            <span class="text-muted small" id="detail-gym-distance"></span>
+                        </div>
+                    </div>
                     <h2 id="detail-gym-name"></h2>
                     <p class="text-muted" id="detail-gym-address"></p>
                     <div id="gym-additional-images" class="d-flex overflow-auto mb-2"></div>
-                    <p class="mb-3"><span class="text-muted small" id="detail-gym-distance"></span></p>
-                    <p class="mb-3"><span id="detail-gym-status" class="badge"></span></p>
 
                     <div class="row">
                         <div class="col-md-6">

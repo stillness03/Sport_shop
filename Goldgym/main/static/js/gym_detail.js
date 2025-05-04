@@ -4,8 +4,12 @@ function loadGymDetail(gymId) {
     .then((gym) => {
       document.getElementById("detail-gym-name").textContent = gym.name;
       document.getElementById("detail-gym-address").textContent = gym.address;
-      document.getElementById("detail-gym-distance").textContent =
-        gym.distance + " miles away";
+      const distanceInKm = Math.round(
+        center.distanceTo(L.latLng(gym.latitude, gym.longitude)) / 1000
+      );
+      document.getElementById(
+        "detail-gym-distance"
+      ).textContent = `${distanceInKm} km away`;
       const statusBadge = document.getElementById("detail-gym-status");
       if (gym.status) {
         statusBadge.textContent = "OPEN";
@@ -14,11 +18,6 @@ function loadGymDetail(gymId) {
         statusBadge.textContent = "CLOSED";
         statusBadge.className = "badge border border-danger text-danger";
       }
-
-      // I think about this topic(delete or not)
-      // const img = document.getElementById('detail-gym-image');
-      // img.src = gym.image_url || '/static/img/noimage.jpg';
-      // img.alt = gym.name;
 
       const galleryContainer = document.getElementById("gym-additional-images");
       galleryContainer.innerHTML = "";

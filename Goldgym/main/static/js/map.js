@@ -61,6 +61,7 @@ function updateVisibleGyms(gyms) {
 
   const bounds = map.getBounds();
   const center = bounds.getCenter();
+
   const visibleGyms = gyms.filter((gym) => {
     if (!gym.latitude || !gym.longitude) return false;
 

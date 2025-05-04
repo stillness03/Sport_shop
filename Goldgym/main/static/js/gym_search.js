@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   input.addEventListener("input", performSearch);
   button.addEventListener("click", performSearch);
-
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       e.preventDefault();

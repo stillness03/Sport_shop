@@ -26,7 +26,7 @@ class CalorieProfile(models.Model):
         ('gain_2', 'Gain 2 kg/week'),
     ]
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='calorie_profile' )
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='calorie_profile')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, verbose_name="Gender")
     age = models.PositiveIntegerField(verbose_name="Age")
     height = models.PositiveIntegerField(verbose_name="Height (cm)")
@@ -54,7 +54,7 @@ class CalorieProfile(models.Model):
             'light': 1.375,
             'moderate': 1.55,
             'active': 1.725,
-            'very active': 1.9
+            'very_active': 1.9
         }
         return multipliers.get(self.activity_level, 1.2)
 

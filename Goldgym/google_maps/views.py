@@ -2,7 +2,18 @@ import datetime
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from .models import Gym
+import logging
+logger = logging.getLogger(__name__)
 
+def gym_detail_api(request, gym_id):
+    try:
+        gym = get_object_or_404(Gym, id=gym_id)
+        logger.info(f"Загрузка зала: {gym.name}")
+        logger.info(f"Часы: {gym.opening_hours_weekdays} / {gym.opening_hours_saturday} / {gym.opening_hours_sunday}")
+        ...
+    except Exception as e:
+        logger.exception("Ошибка при загрузке gym_detail_api")
+        return JsonResponse({'error': 'Internal server error'}, status=500)
 
 def gym_locator(request):
     gyms = []
@@ -26,8 +37,7 @@ def gym_detail_api(request, gym_id):
 
         additional_images = []
         if hasattr(gym, 'images'):
-            additional_images = [
-                img.image.url for img in gym.images.all() if img.image]
+            additional_images = [img.image.url for img in gym.images.all() if img.image]
 
         data = {
             'id': gym.id,
@@ -55,14 +65,11 @@ def parse_hours(hours_str):
     try:
         start_str, end_str = hours_str.split('-')
         try:
-            start = datetime.datetime.strptime(
-                start_str.strip(), "%I %p").time()
+            start = datetime.datetime.strptime(start_str.strip(), "%I %p").time()
             end = datetime.datetime.strptime(end_str.strip(), "%I %p").time()
         except ValueError:
-            start = datetime.datetime.strptime(
-                start_str.strip(), "%I:%M %p").time()
-            end = datetime.datetime.strptime(
-                end_str.strip(), "%I:%M %p").time()
+            start = datetime.datetime.strptime(start_str.strip(), "%I:%M %p").time()
+            end = datetime.datetime.strptime(end_str.strip(), "%I:%M %p").time()
         return start, end
     except:
         return None, None
@@ -85,6 +92,5 @@ def is_gym_open(gym):
         if start < end:
             return start <= current_time <= end
         else:
-
             return current_time >= start or current_time <= end
     return False

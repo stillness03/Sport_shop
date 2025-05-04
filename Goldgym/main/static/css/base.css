@@ -1,7 +1,20 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 :root{
     --box-shadow: 0px 1px 1px rgba 0, 0, 0, 0.364;
+=======
+:root {
+    --box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.364);
+    --font-family: "Inter", sans-serif;
+    --primary-color: #F8D448;
+    --dark-color: #191616;
+    --text-color: #000000;
+    --light-text: #FFFFFF;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+    --logo-width: min(1100px, 80vw);
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
 }
 
 @font-face {
@@ -16,10 +29,17 @@ span {
 }
 
 body {
+<<<<<<< HEAD
     font-family: "Anton", serif;
     font-size: 18px;
     padding: 0;
     margin: 0;
+=======
+    font-family: 'Inter', sans-serif;
+    background: #FFFFFF;
+    width: 100%;
+    min-height: 100vh;
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
     overflow-x: hidden;
 }
 
@@ -33,28 +53,30 @@ a {
     color: #000000;
 }
 
+<<<<<<< HEAD
 h1 {
     font-size: 48px;
 }
 
 h2{
     font-size: 48px;
+=======
+h1, h2, h4 {
+    font-size: clamp(2rem, 5vw, 3rem);
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
     font-weight: 600;
+    line-height: 1.2;
 }
 
 h3 {
-    font-size: 36px;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
 }
 
-h4 {
-    font-size: 48px;
-    font-weight: 600;
-}
 
 h5 {
-    font-size: 18px;
-    margin: 0;
+    font-size: clamp(1rem, 3vw, 1.125rem);
     font-weight: 600;
+    margin: 0;
 }
 
 <<<<<<< HEAD
@@ -91,6 +113,7 @@ h5 {
     margin: 0 auto;
 }
 
+<<<<<<< HEAD
 .header {
     height: 80px;
     background-color: #f4f1ec ;
@@ -248,6 +271,86 @@ h5 {
     justify-items: center;
     column-gap: 0px;
     row-gap: 10px;
+=======
+.wellcome-container {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+    margin-left: calc(-50vw + 50%);
+    min-height: 300px;
+}
+
+.wellcome-image {
+    width: 100vw;
+    height: auto;
+    max-height: 90vh;
+    min-height: 300px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: var(--box-shadow);
+}
+
+.logo-overlay {
+    position: absolute;
+    top: 45%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: var(--logo-width);
+    max-width: 90%;
+    height: auto;
+    transition: var(--transition);
+}
+
+.find-btn {
+    position: absolute;
+    bottom: clamp(20px, 5vw, 47px);
+    right: clamp(20px, 15vw, 30vh);
+    background: var(--primary-color);
+    padding: clamp(8px, 1.5vw, 14px) clamp(12px, 2vw, 24px);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-size: clamp(14px, 2vw, 16px);
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    z-index: 11;
+}
+
+@media (max-width: 768px) {
+    .logo-overlay {
+        --logo-width: min(600px, 90vw);
+    }
+
+    .find-btn {
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 30px;
+    }
+}
+
+@media (min-width: 2000px) {
+    .logo-overlay {
+        --logo-width: 1100px;
+    }
+}
+
+/*NAVBAR*/
+.header {
+    background-color: #191616;
+    padding: 0 clamp(1rem, 5vw, 5rem);
+    height: clamp(4rem, 10vw, 6rem);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    max-width: 1440px;
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
     margin: 0 auto;
 }
 
@@ -282,6 +385,7 @@ h5 {
 
 .pagination {
     display: flex;
+<<<<<<< HEAD
     position: absolute;
     bottom: 0%;
     left: 46%;
@@ -291,6 +395,34 @@ h5 {
 
 .disabled {
     opacity: 0.2;
+=======
+    justify-content: space-between;
+    padding: 0 15px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.header-logo {
+    order: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.heavy-logo {
+    height: clamp(2.5rem, 6vw, 4rem);
+    transition: transform 0.3s ease;
+}
+
+.header-nav {
+    order: 2;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 20px;
+    flex-grow: 1
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
 }
 
 <<<<<<< HEAD
@@ -303,47 +435,77 @@ h5 {
     list-style: none;
     padding: 0;
     display: flex;
-    gap: 20px;
+    gap: clamp(1rem, 3vw, 2rem);
+    height: 100%;
+    align-items: center;
+    margin: 0;
+    margin-right: auto;
 }
 
-
-.header-logo {
-    order: 0;
-    margin-right: 48px;
-}
-
-
-.header-profile {
-    order: 2;
+.nav-item {
+    color: white;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 1rem 0;
+    transition: color 0.3s ease;
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 24px;
+    height: 100%;
+}
+
+.nav-item:hover {
+    color: #F8D448;
+}
+
+
+
+/* Profile Section */
+.header-profile {
+    order: 3;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+    height: 100%;
 }
 
 
 .corth {
     position: relative;
+<<<<<<< HEAD
     display: inline-block;
 >>>>>>> a47ffd9 (fixing styles and fixin some mistakes in files)
+=======
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50px;
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
 }
 
 .cart-icon {
     width: 50px;
-    height: auto;
+    height: 50px;
 }
-
 
 .cart-quantity {
     position: absolute;
 <<<<<<< HEAD
+<<<<<<< HEAD
     border-radius: 20px;
 =======
     top: 0;
+=======
+    top: 20%;
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
     right: -8px;
     transform: translate(50%, -50%);
     background-color: #F8D448;
     color: #151419;
     border-radius: 50%;
+<<<<<<< HEAD
 >>>>>>> a47ffd9 (fixing styles and fixin some mistakes in files)
     width: 20px;
     height: 20px;
@@ -416,18 +578,28 @@ h5 {
     border: 1px solid #0000
 =======
     font-size: 12px;
+=======
+    width: 1.2rem;
+    height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
     font-weight: bold;
-    z-index: 10;
+
 }
 
-.header-profile a[href*="login"] {
+.btn-profile,
+.btn-login {
     background-color: #F8D448;
     color: #151419 !important;
-    padding: 14px 24px;
-    border-radius: 8px;
+    padding: clamp(0.4rem, 1.5vw, 0.7rem) clamp(0.6rem, 2vw, 1.2rem);
+    border-radius: 0.5rem;
     font-weight: 500;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
     white-space: nowrap;
+<<<<<<< HEAD
 >>>>>>> a47ffd9 (fixing styles and fixin some mistakes in files)
 }
 
@@ -447,6 +619,53 @@ h5 {
 .cart-btn:hover {
     border: 1px solid #0000
 =======
+=======
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-profile:hover,
+.btn-login:hover {
+    background-color: #e6c540;
+    transform: translateY(-2px);
+}
+
+/* Burger Menu */
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1002;
+    margin: 0;
+    margin-right: auto;
+}
+
+.burger-line {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background-color: white;
+    margin: 0.4rem 0;
+    transition: all 0.3s ease;
+}
+
+.burger-menu.active .burger-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
 .m-4 {
     background-color: #F8D448;
     color: #151419 !important;
@@ -475,6 +694,7 @@ h5 {
 >>>>>>> a47ffd9 (fixing styles and fixin some mistakes in files)
 }
 
+<<<<<<< HEAD
 .cart-price {
     font-size: 16px;
 }
@@ -483,6 +703,44 @@ h5 {
     opacity: 0.5;
     margin: 0;
 }
+=======
+@media (max-width: 992px) {
+    .header-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #191616;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+    }
+
+    .header-nav.active {
+        transform: translateX(0);
+    }
+
+    .header-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .burger-menu {
+        display: block;
+        order: 2;
+    }
+
+    .header-profile {
+        order: 3;
+    }
+}
+
+>>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
 
 .cart-total-price-ots {
     font-size: 18px;
