@@ -60,26 +60,31 @@
                 {% if orders %}
                     <div class="orderss">
                         {% for order in orders %}
-                            <div class="order-cart">
-                                <h5 class="order-title">Order № {{ order.id }}</h5>
-                                <p class="order-desc">
-                                    {% for item in order.items.all %}
-                                        <div class="orders-carts">
-                                            <span class="dadad">Name: </span><a class="" href="{% url 'main:product_detail' item.product.slug %}">{{ item.product.name }}</a>
-                                            <br>
-                                            <span class="dadad">Quantity:</span> {{ item.quantity }},
-                                            <span class="dadad">Price: $ {{ item.price }}</span> <br>
-                                            <span class="dadad">Date:</span>  {{ order.created }}
-                                            <br>
-                                        </div>
-                                    {% endfor %}
-                                </p>
-                            </div>
+                            {% if order.items.all %}
+                                <div class="order-cart">
+                                    <h5 class="order-title">Order № {{ order.id }}</h5>
+                                    <p class="order-desc">
+                                        {% for item in order.items.all %}
+                                            <div class="orders-carts">
+                                                <span class="dadad">Name: </span>
+                                                <a href="{% url 'main:product_detail' item.product.slug %}">
+                                                    {{ item.product.name }}
+                                                </a>
+                                                <br>
+                                                <span class="dadad">Quantity:</span> {{ item.quantity }},
+                                                <span class="dadad">Price: ${{ item.price }}</span> <br>
+                                                <span class="dadad">Date:</span> {{ order.created|date:"d.m.Y H:i" }}
+                                                <br>
+                                            </div>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% else %}
                     <h4 class="notorders">You haven't ordered anything yet.</h4>
-                {% endif %}         
+                {% endif %}
             </div>
         </div>
     </div>
