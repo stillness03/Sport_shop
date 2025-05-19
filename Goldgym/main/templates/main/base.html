@@ -1,21 +1,17 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock title %}</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!--  bootstrap   -->
-    <link
-      rel="stylesheet"
-      href=" {% static 'bootstrap/css/bootstrap.min.css' %}"
-    />
+    <link rel="stylesheet" href=" {% static 'bootstrap/css/bootstrap.min.css' %}">
     <!--    css   -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
   </head>
   <body>
@@ -90,129 +86,117 @@
               class="heavy-logo"
           /></a>
 >>>>>>> 4e23637 (Started adapting styles for different screen resolutions)
+=======
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/order.css' %}">
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+</head>
+<body>
+     <header class="header sticky-top">
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="/"><img src="{% static 'img/logo.png' %}" alt="Gold's Gym" class="heavy-logo"></a>
+            </div>
+
+            <button class="burger-menu d-lg-none" aria-label="Toggle navigation">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+
+
+            <nav class="header-nav">
+                <ul class="header-list">
+                    <li><a href="/calculator" class="nav-item">Calculator</a></li>
+                    <li><a href="/shop" class="nav-item">Shop</a></li>
+                    <li><a href="/gyms" class="nav-item">Map</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-profile">
+                <div class="corth">
+                    <a href="{% url 'cart:cart_detail'%}" aria-label="Cart">
+                        <img src="{% static 'img/corth.png' %}" class="cart-icon" alt="Cart">
+                        <span class="cart-quantity">
+                            {% with cart_quantity=cart|length %}
+                                {% if cart_quantity > 0 %}
+                                    {{ cart_quantity }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            {% endwith %}
+                        </span>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}" class="btn-profile">PROFILE</a>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="btn-login">LOGIN</a>
+                {% endif %}
+            </div>
+>>>>>>> ef65a6f (Split the file base.css into several files, and rewrote them html files for new styles such as: detail, index, list, create, process, login, registration)
         </div>
-
-        <button class="burger-menu d-lg-none" aria-label="Toggle navigation">
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-        </button>
-
-        <nav class="header-nav">
-          <ul class="header-list">
-            <li><a href="/calculator" class="nav-item">Calculator</a></li>
-            <li><a href="/shop" class="nav-item">Shop</a></li>
-            <li><a href="/gyms" class="nav-item">Map</a></li>
-          </ul>
-        </nav>
-
-        <div class="header-profile">
-          <div class="corth">
-            <a href="{% url 'cart:cart_detail'%}" aria-label="Cart">
-              <img
-                src="{% static 'img/corth.png' %}"
-                class="cart-icon"
-                alt="Cart"
-              />
-              <span class="cart-quantity">
-                {% with cart_quantity=cart|length %} {% if cart_quantity > 0 %}
-                {{ cart_quantity }} {% else %} 0 {% endif %} {% endwith %}
-              </span>
-            </a>
-          </div>
-          {% if user.is_authenticated %}
-          <a href="{% url 'users:profile' %}" class="btn-profile">PROFILE</a>
-          {% else %}
-          <a href="{% url 'users:login' %}" class="btn-login">LOGIN</a>
-          {% endif %}
-        </div>
-      </div>
     </header>
-    <div class="container">{% block content %} {% endblock content %}</div>
+    <div class="container">
+    {% block content %}
+    {% endblock content %}
+    </div>
 
-    <footer class="footer">
-      <div style="display: flex; align-items: center">
-        <h2 style="color: #ffffff; font-size: 38px; font-weight: 500">
-          STRONGER STARTS HERE
-        </h2>
-        <div class="social-icons">
-          <div class="social-icon">
-            <img
-              src="{% static 'img/instagram.png' %}"
-              class="corth"
-              href="#"
-              alt=""
-            />
-          </div>
-          <div class="social-icon">
-            <img
-              src="{% static 'img/facebook.png' %}"
-              class="corth"
-              href="#"
-              alt=""
-            />
-          </div>
-          <div class="social-icon">
-            <img src="{% static 'img/x.png' %}" class="corth" href="#" alt="" />
-          </div>
-          <div class="social-icon">
-            <img
-              src="{% static 'img/youtube.png' %}"
-              class="corth"
-              href="#"
-              alt=""
-            />
-          </div>
+    <footer class="footer ">
+        <div class="d-flex justify-content-between align-items-start mb-1">
+            <h2 class="footer-title mb-0">STRONGER STARTS HERE</h2>
+            <div class="social-icons">
+                <div class="social-icon"><img src="{% static 'img/instagram.png' %}"  href="#" alt=""></div>
+                <div class="social-icon"><img src="{% static 'img/facebook.png' %}"  href="#" alt=""></div>
+                <div class="social-icon"><img src="{% static 'img/x.png' %}"  href="#" alt=""></div>
+                <div class="social-icon"><img src="{% static 'img/youtube.png' %}"  href="#" alt=""></div>
+            </div>
         </div>
-      </div>
 
-      <div style="display: flex; gap: 24px; margin-top: 40px">
-        <a href="#" class="footer-link" style="width: 100px">Find a Gym</a>
-        <a href="#" class="footer-link" style="width: 50px">Shop</a>
-        <a href="#" class="footer-link" style="width: 95px">Calculator</a>
-      </div>
+        <div class="footer-nav">
+            <a href="#" class="footer-link">Find a Gym</a>
+            <a href="#" class="footer-link">Shop</a>
+            <a href="#" class="footer-link">Calculator</a>
+        </div>
 
-      <div class="footer-divider"></div>
+        <div class="footer-divider"></div>
 
-      <div class="footer-links">
-        <a href="#" class="footer-link" style="width: 220px"
-          >own a gold's gym franchise</a
-        >
-        <a href="#" class="footer-link" style="width: 83px">careers</a>
-        <a href="#" class="footer-link" style="width: 222px"
-          >diversity, equity & inclusion</a
-        >
-        <a href="#" class="footer-link" style="width: 118px">Privacy Notice</a>
-        <a href="#" class="footer-link" style="width: 166px"
-          >State Privacy Notice</a
-        >
-        <a href="#" class="footer-link" style="width: 159px"
-          >Terms & Conditions</a
-        >
-      </div>
+        <div class="footer-links">
+            <a href="#" class="footer-link" >own a gold's gym franchise</a>
+            <a href="#" class="footer-link" >careers</a>
+            <a href="#" class="footer-link" >diversity, equity & inclusion</a>
+            <a href="#" class="footer-link" >Privacy Notice</a>
+            <a href="#" class="footer-link" >State Privacy Notice</a>
+            <a href="#" class="footer-link" >Terms & Conditions</a>
+        </div>
 
-      <p class="footer-copyright">© 2024 GOLD'S GYM – ALL RIGHTS RESERVED</p>
+        <p class="footer-copyright">© 2024 GOLD'S GYM – ALL RIGHTS RESERVED</p>
     </footer>
+
+
 
     <!--  js bootstrap  -->
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const burgerMenu = document.querySelector(".burger-menu");
-        const headerNav = document.querySelector(".header-nav");
+            document.addEventListener('DOMContentLoaded', function() {
+                const burgerMenu = document.querySelector('.burger-menu');
+                const headerNav = document.querySelector('.header-nav');
 
-        burgerMenu.addEventListener("click", function () {
-          this.classList.toggle("active");
-          headerNav.classList.toggle("active");
-        });
+                burgerMenu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    headerNav.classList.toggle('active');
+                });
 
-        document.querySelectorAll(".header-nav a").forEach((link) => {
-          link.addEventListener("click", function () {
-            burgerMenu.classList.remove("active");
-            headerNav.classList.remove("active");
-          });
-        });
-      });
-    </script>
-  </body>
+                document.querySelectorAll('.header-nav a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        burgerMenu.classList.remove('active');
+                        headerNav.classList.remove('active');
+                    });
+                });
+            });
+        </script>
+</body>
 </html>

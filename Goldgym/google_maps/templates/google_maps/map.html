@@ -73,10 +73,10 @@
     </div>
 </div>
 
-<script src="{% static 'js/gym_detail.js' %}"></script>
+<script src="{% static 'js/map.js' %}"></script>
 <script src="{% static 'js/gym_search.js' %}"></script>
+<script src="{% static 'js/gym_detail.js' %}"></script>
 {{ gyms|json_script:"gyms-data" }}
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-<script src="{% static 'js/map.js' %}"></script>
 {% endblock %}

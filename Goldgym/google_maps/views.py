@@ -43,6 +43,8 @@ def gym_detail_api(request, gym_id):
             'id': gym.id,
             'name': gym.name,
             'address': gym.address,
+            'latitude': gym.latitude,
+            'longitude': gym.longitude,
             'amenities': gym.amenities.split(','),
             'opening_hours_weekdays': gym.opening_hours_weekdays,
             'opening_hours_saturday': gym.opening_hours_saturday,

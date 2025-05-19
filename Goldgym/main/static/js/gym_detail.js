@@ -4,12 +4,19 @@ function loadGymDetail(gymId) {
     .then((gym) => {
       document.getElementById("detail-gym-name").textContent = gym.name;
       document.getElementById("detail-gym-address").textContent = gym.address;
-      const distanceInKm = Math.round(
-        center.distanceTo(L.latLng(gym.latitude, gym.longitude)) / 1000
-      );
-      document.getElementById(
-        "detail-gym-distance"
-      ).textContent = `${distanceInKm} km away`;
+      if (gym.latitude && gym.longitude) {
+        const center = map.getCenter();
+        const distanceInKm = Math.round(
+          center.distanceTo(L.latLng(gym.latitude, gym.longitude)) / 1000
+        );
+        document.getElementById(
+          "detail-gym-distance"
+        ).textContent = `${distanceInKm} km away`;
+      } else {
+        document.getElementById(
+          "detail-gym-distance"
+        ).textContent = `Location not available`;
+      }
       const statusBadge = document.getElementById("detail-gym-status");
       if (gym.status) {
         statusBadge.textContent = "OPEN";
@@ -62,9 +69,6 @@ function loadGymDetail(gymId) {
 
       document.getElementById("gym-list").style.display = "none";
       document.getElementById("gym-detail").style.display = "block";
-    })
-    .catch((error) => {
-      console.error("Помилка при завантаженні деталей спортзалу:", error);
     });
 }
 

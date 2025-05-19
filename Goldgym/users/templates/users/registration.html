@@ -4,51 +4,231 @@
 {% block title %}Registration{% endblock title %}
 
 {% block content %}
-    <section class="login-reg d-flex">
-        <div class="login-title">
-            <h2>Registration</h2>
-            <form action="{% url "user:registration" %}" method="post">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="id_first_name" class="form-label form-stylereg">First Name</label>
-                        <input type="text" class="form-control form-stylereg" id="id_first_name"
-                        value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
-                        name="first_name" placeholder="Your First Name" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="id_last_name" class="form-label form-stylereg">Last Name</label>
-                        <input type="text" class="form-control form-stylereg" id="id_last_name"
-                        value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
-                        name="last_name" placeholder="Your Last Name" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="id_username" class="form-label form-stylereg">Username</label>
-                        <input type="text" class="form-control form-stylereg" id="id_username"
-                        value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
-                        name="username" placeholder="Your Username" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="id_email" class="form-label form-stylereg">Email</label>
-                        <input type="email" class="form-control form-stylereg" id="id_email"
-                        value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
-                        name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="id_password1" class="form-label form-stylereg">Password</label>
-                        <input type="password" class="form-control form-stylereg" id="id_password1"
-                        value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}"
-                        name="password1" placeholder="Your Password" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="id_password2" class="form-label form-stylereg">Confirm Password</label>
-                        <input type="password" class="form-control form-stylereg" id="id_password2"
-                        value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}"
-                        name="password2" placeholder="Your Password" required>
+    <section class="login-reg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="registration-form">
+                        <div class="text-center mb-5">
+                            <h2 class="form-title">Create Your Account</h2>
+                            <p class="form-subtitle">Join our community today</p>
+                        </div>
+
+                        {% if form.errors %}
+                            <div class="alert alert-custom">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <div class="alert-item">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            <span>{{ error }}</span>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <form action="{% url 'user:registration' %}" method="post" id="registrationForm">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="id_first_name" class="form-label">First Name</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-user input-icon"></i>
+                                        <input type="text" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+                                               id="id_first_name"
+                                               value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
+                                               name="first_name" placeholder="Your First Name" required>
+                                    </div>
+                                    {% if form.first_name.errors %}
+                                        <div class="invalid-feedback">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.first_name.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="id_last_name" class="form-label">Last Name</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-user input-icon"></i>
+                                        <input type="text" class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+                                               id="id_last_name"
+                                               value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
+                                               name="last_name" placeholder="Your Last Name" required>
+                                    </div>
+                                    {% if form.last_name.errors %}
+                                        <div class="invalid-feedback">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.last_name.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="id_username" class="form-label">Username</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-at input-icon"></i>
+                                        <input type="text" class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                                               id="id_username"
+                                               value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
+                                               name="username" placeholder="Your Username" required>
+                                    </div>
+                                    {% if form.username.errors %}
+                                        <div class="invalid-feedback">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.username.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="id_email" class="form-label">Email</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-envelope input-icon"></i>
+                                        <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                                               id="id_email"
+                                               value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
+                                               name="email" placeholder="your.email@example.com" required>
+                                    </div>
+                                    {% if form.email.errors %}
+                                        <div class="invalid-feedback">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.email.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="id_password1" class="form-label">Password</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input type="password" class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
+                                               id="id_password1"
+                                               name="password1" placeholder="Create password" required>
+                                        <button class="toggle-password" type="button" data-target="id_password1">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </button>
+                                    </div>
+                                    <small class="form-text">
+                                        Must contain: 8+ chars, uppercase, lowercase
+                                    </small>
+                                    {% if form.password1.errors %}
+                                        <div class="invalid-feedback">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.password1.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                    <div id="password1Error" class="invalid-feedback" style="display: none;">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        Password must contain at least one uppercase letter, one lowercase letter.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="id_password2" class="form-label">Confirm Password</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input type="password" class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
+                                               id="id_password2"
+                                               name="password2" placeholder="Confirm password" required>
+                                        <button class="toggle-password" type="button" data-target="id_password2">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </button>
+                                    </div>
+                                    {% if form.password2.errors %}
+                                        <div class="invalid-feedback">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.password2.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                    <div id="passwordMatchError" class="invalid-feedback" style="display: none;">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        Passwords do not match.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-footer">
+                                <button type="submit" class="submit-btn">
+                                    <span>Register Now</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                                <div class="login-link">
+                                    Already have an account? <a href="{% url 'user:login' %}">Sign In</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <button type="submit" class="login-btn form-style">Register</button>
-            </form>
+            </div>
         </div>
     </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    const icon = this.querySelector('i');
+
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    }
+                });
+            });
+
+            const form = document.getElementById('registrationForm');
+            const password1 = document.getElementById('id_password1');
+            const password2 = document.getElementById('id_password2');
+            const password1Error = document.getElementById('password1Error');
+            const passwordMatchError = document.getElementById('passwordMatchError');
+
+            function validatePassword() {
+                const password = password1.value;
+                const hasUpperCase = /[A-Z]/.test(password);
+                const hasLowerCase = /[a-z]/.test(password);
+
+                if (password.length > 0 && (!hasUpperCase || !hasLowerCase)) {
+                    password1.classList.add('is-invalid');
+                    password1Error.style.display = 'flex';
+                    return false;
+                } else {
+                    password1.classList.remove('is-invalid');
+                    password1Error.style.display = 'none';
+                    return true;
+                }
+            }
+
+            function checkPasswordMatch() {
+                if (password2.value && password1.value !== password2.value) {
+                    password2.classList.add('is-invalid');
+                    passwordMatchError.style.display = 'flex';
+                    return false;
+                } else {
+                    password2.classList.remove('is-invalid');
+                    passwordMatchError.style.display = 'none';
+                    return true;
+                }
+            }
+
+            password1.addEventListener('input', function() {
+                validatePassword();
+                checkPasswordMatch();
+            });
+
+            password2.addEventListener('input', checkPasswordMatch);
+
+            form.addEventListener('submit', function(e) {
+                if (!validatePassword() || !checkPasswordMatch()) {
+                    e.preventDefault();
+                }
+            });
+        });
+</script>
 {% endblock content %}

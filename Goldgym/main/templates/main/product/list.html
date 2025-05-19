@@ -5,20 +5,21 @@
 
 {% block content %}
     <div class="llist d-flex">
+        <button class="menu-toggle">☰ Categories</button>
         <div class="sidebar-boxs">
             <div class="sidebar">
                 <h3>Categories</h3>
-                    <ul>
-                        <li {% if not category %}class="selected"{% endif %}>
-                            <a href="{% url 'main:product_list' %}">All</a>
+                <ul>
+                    <li {% if not category %}class="selected"{% endif %}>
+                        <a href="{% url 'main:product_list' %}">All</a>
+                    </li>
+                    {% for c in categories %}
+                        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+                            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                         </li>
-                        {% for c in categories %}
-                            <li {% if category.slug == c.slug %}class="selected"{% endif %}>
-                                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                    {% endfor %}
+                </ul>
+            </div>
             <div class="mainvl"></div>
         </div>
         <div class="main">
@@ -52,7 +53,7 @@
                 {% for page in products.paginator.page_range %}
                     {% if page >= products.number|add:-2 and page <= products.number|add:2 %}
                         <li>
-                            <a href="?page={{ page }}" class="{% if products.number == page %}disabled{% endif %}">{{ page }}</a>
+                            <a href="?page={{ page }}" class="{% if products.number == page %}active{% endif %}">{{ page }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -63,3 +64,18 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+            this.textContent = document.querySelector('.sidebar').classList.contains('active') ?
+                              '✕ Close' : '☰ Categories';
+        });
+    }
+});
+</script>
+{% endblock %}
