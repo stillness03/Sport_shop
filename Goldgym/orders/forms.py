@@ -5,7 +5,7 @@ from .models import Order
 class OrderCreateForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['user', 'first_name', 'last_name', 'email',
+        fields = ['first_name', 'last_name', 'email',
                   'address', 'postal_code', 'city']
 
     def __init__(self, *args, **kwargs):
@@ -18,7 +18,12 @@ class OrderCreateForm(forms.ModelForm):
 
     def save(self, commit=True):
         order = super().save(commit=False)
-        order.user = self.request.user
+
+        if self.request and self.request.user.is_authenticated:
+            order.user = self.request.user
+        else:
+            order.user = None
+
         if commit:
             order.save()
         return order

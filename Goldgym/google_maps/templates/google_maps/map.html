@@ -4,29 +4,105 @@
 {% block content %}
 
 <div class="gym-locator-wrapper d-flex">
-    <div class="gym-list-container">
-        <h1 class="text-center my-3">FIND YOUR GYM</h1>
-        <div class="search-box mb-4 position-relative">
-            <input type="text" id="gym-search" class="form-control pe-5" placeholder="Search by gym name, address or city...">
-            <button id="search-button" class="btn search-icon-button" type="button">
-                <img src="{% static 'img/search-icon.png' %}" alt="Search" />
-            </button>
+    <button id="mobile-view-toggle" class="btn btn-primary d-md-none mobile-toggle-btn">
+        VIEW AS MAP
+    </button>
+
+    <div class="gym-list-container" id="gym-list-container">
+        <div class="mobile-header d-md-none">
+            <button id="back-to-list-mobile" class="btn btn-sm btn-secondary">← Back to list</button>
+            <div class="search-box mb-4 position-relative">
+                <input type="text" id="gym-search-mobile" class="form-control pe-5" placeholder="Search by gym name, address or city...">
+                <button id="search-button-mobile" class="btn search-icon-button" type="button">
+                    <img src="{% static 'img/search-icon.png' %}" alt="Search" />
+                </button>
+            </div>
         </div>
+
+        <h1 class="text-center my-3">FIND YOUR GYM</h1>
+
+        <div class="search-filter-container d-flex align-items-center gap-2 mb-3">
+            <div class="search-box mb-4 position-relative flex-grow-1">
+                <input type="text" id="gym-search" class="form-control pe-5" placeholder="Search by gym name, address or city...">
+                <button id="search-button" class="btn search-icon-button" type="button">
+                    <img src="{% static 'img/search-icon.png' %}" alt="Search" />
+                </button>
+            </div>
+
+
+        </div>
+
+            <button class="filter-text-btn" type="button" id="filterBtn">
+                FILTER AMENITIES
+            </button>
+
+            <div class="amenities-filter-container" id="amenitiesFilterContainer" style="display: none;">
+                <div class="amenities-filter-content">
+                    <div class="amenities-columns-container">
+                        <div class="amenities-column">
+                            {% for amenity in amenities_list|slice:":13" %}
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" value="{{ amenity }}" id="amenity-{{ forloop.counter }}">
+                                <label class="form-check-label" for="amenity-{{ forloop.counter }}">
+                                    {{ amenity }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="amenities-column">
+                            {% for amenity in amenities_list|slice:"13:26" %}
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" value="{{ amenity }}" id="amenity-{{ forloop.counter|add:13 }}">
+                                <label class="form-check-label" for="amenity-{{ forloop.counter|add:13 }}">
+                                    {{ amenity }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="amenities-column">
+                            {% for amenity in amenities_list|slice:"26:39" %}
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" value="{{ amenity }}" id="amenity-{{ forloop.counter|add:26 }}">
+                                <label class="form-check-label" for="amenity-{{ forloop.counter|add:26 }}">
+                                    {{ amenity }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="amenities-filter-buttons">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="clearFilters">CLEAR</button>
+                        <button type="button" class="btn btn-primary btn-sm" id="applyFilters">SAVE</button>
+                    </div>
+                </div>
+            </div>
+
+
 
         <div id="gym-list">
             {% for gym in gyms %}
             <div class="gym-card mb-4 border rounded" data-gym-id="{{ gym.id }}">
-                    <div class="cards-body">
-                        <div class="d-flex justify-content-between align-items-start mb-1">
-                            <h5 class="card-title mb-0">${gym.name}</h5>
-                            <div class="text-end">
-                                <span class="badge ">{{ gym.status }} miles away</span>
-                                <span class="text-muted small">{{ gym.distance }} miles away</span>
-                            </div>
-                        <p class="card-text text-muted">{{ gym.address }}</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">VISIT GYM PAGE →</a>
+                <div class="cards-body">
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                        <h5 class="card-title mb-0">{{ gym.name }}</h5>
+                        <div class="text-end">
+                            <span class="badge {% if gym.status == 'Open' %}bg-success{% else %}bg-secondary{% endif %}">{{ gym.status }}</span>
+                            <span class="text-muted small">{{ gym.distance }} miles away</span>
                         </div>
                     </div>
+                    <p class="card-text text-muted">{{ gym.address }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="amenities-preview">
+                            {% for amenity in gym.amenities.all|slice:":3" %}
+                                <span class="badge bg-light text-dark me-1">{{ amenity.name }}</span>
+                            {% endfor %}
+                            {% if gym.amenities.count > 3 %}
+                                <span class="badge bg-light text-dark">+{{ gym.amenities.count|add:"-3" }} more</span>
+                            {% endif %}
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-primary">VISIT GYM PAGE →</a>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
@@ -68,7 +144,7 @@
 
     </div>
 
-    <div class="gym-map-container">
+    <div class="gym-map-container" id="gym-map-container">
         <div id="map"></div>
     </div>
 </div>
@@ -79,4 +155,103 @@
 {{ gyms|json_script:"gyms-data" }}
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const gymList = document.getElementById('gym-list');
+    if (gymList) {
+        console.log('Client height:', gymList.clientHeight);
+        console.log('Scroll height:', gymList.scrollHeight);
+        console.log('Offset height:', gymList.offsetHeight);
+
+        gymList.style.overflowY = 'scroll';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtn = document.getElementById('filterBtn');
+    const filterContainer = document.getElementById('amenitiesFilterContainer');
+    const clearBtn = document.getElementById('clearFilters');
+    const applyBtn = document.getElementById('applyFilters');
+
+    if (!filterBtn || !filterContainer || !clearBtn || !applyBtn) {
+        console.error('One or more required elements are missing');
+        return;
+    }
+
+    filterBtn.addEventListener('click', function() {
+        filterContainer.style.display = filterContainer.style.display === 'none' ? 'block' : 'none';
+    });
+
+    clearBtn.addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('#amenitiesFilterContainer input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    });
+
+    applyBtn.addEventListener('click', function() {
+        const selectedAmenities = Array.from(
+            document.querySelectorAll('#amenitiesFilterContainer input[type="checkbox"]:checked')
+        ).map(checkbox => checkbox.value);
+
+        console.log('Selected amenities:', selectedAmenities);
+
+        filterContainer.style.display = 'none';
+    });
+
+
+    const toggleBtn = document.getElementById('mobile-view-toggle');
+    const gymListContainer = document.getElementById('gym-list-container');
+    const gymMapContainer = document.getElementById('gym-map-container');
+    const backToListBtn = document.getElementById('back-to-list-mobile');
+    const mobileHeader = document.querySelector('.mobile-header');
+
+    if (!toggleBtn || !gymListContainer || !gymMapContainer) {
+        console.error('Required elements for view switching are missing');
+        return;
+    }
+
+    function showListView() {
+        gymMapContainer.style.display = 'none';
+        gymListContainer.classList.remove('hidden');
+        if (mobileHeader) mobileHeader.style.display = 'none';
+        toggleBtn.textContent = 'VIEW AS MAP';
+    }
+
+    function showMapView() {
+        gymMapContainer.style.display = 'block';
+        gymListContainer.classList.add('hidden');
+        if (mobileHeader) mobileHeader.style.display = 'block';
+        toggleBtn.textContent = 'VIEW AS LIST';
+    }
+
+    if (window.innerWidth < 768) {
+        showListView();
+    } else {
+        gymMapContainer.style.display = 'block';
+    }
+
+    toggleBtn.addEventListener('click', function() {
+        if (gymMapContainer.style.display === 'none') {
+            showMapView();
+        } else {
+            showListView();
+        }
+    });
+
+    if (backToListBtn) {
+        backToListBtn.addEventListener('click', showListView);
+    }
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) {
+            gymListContainer.classList.remove('hidden');
+            gymMapContainer.style.display = 'block';
+            if (mobileHeader) mobileHeader.style.display = 'none';
+        }
+    });
+});
+</script>
 {% endblock %}

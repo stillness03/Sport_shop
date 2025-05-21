@@ -1,23 +1,19 @@
 import datetime
 
-
 def parse_hours(hours_str):
     if not hours_str:
         return None
     try:
         start_str, end_str = hours_str.split('-')
         try:
-            start = datetime.datetime.strptime(
-                start_str.strip(), "%I %p").time()
+            start = datetime.datetime.strptime(start_str.strip(), "%I %p").time()
             end = datetime.datetime.strptime(end_str.strip(), "%I %p").time()
         except:
-            start = datetime.datetime.strptime(
-                start_str.strip(), "%I:%M %p").time()
-            end = datetime.datetime.strptime(
-                end_str.strip(), "%I:%M %p").time()
+            start = datetime.datetime.strptime(start_str.strip(), "%I:%M %p").time()
+            end = datetime.datetime.strptime(end_str.strip(), "%I:%M %p").time()
         return start, end
     except Exception as e:
-        print(f"Erorr in parse_hours: {e}, input={hours_str}")
+        print(f"Ошибка в parse_hours: {e}, input={hours_str}")
         return None
 
 

@@ -1,0 +1,488 @@
+.gym-locator-wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.gym-locator-container {
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.gym-map-container {
+    flex: 1;
+    position: relative;
+    height: 50vh;
+}
+
+
+#map {
+    width: 100%;
+    height: 100%;
+
+}
+
+.gym-list-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#gym-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 15px;
+    margin-top: 10px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f8f9fa;
+}
+
+#gym-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+#gym-list::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 3px;
+}
+
+#gym-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+#gym-list::-webkit-scrollbar-thumb:hover {
+    background-color: #6c757d;
+}
+
+.search-filter-container {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+    padding: 10px 0;
+}
+
+@media (max-width: 767.98px) {
+    .gym-list-container {
+        height: calc(100vh - 60px);
+    }
+
+    #gym-list {
+        padding-right: 8px;
+    }
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    flex-grow: 1;
+    border-radius: 0;
+
+}
+
+.leaflet-control-container {
+    display: none !important;
+}
+
+.cards-body {
+    width: 100%;
+    max-width: none;
+    padding: 20px;
+}
+
+.card-img-top{
+    height: 150px;
+    width: 150px;
+}
+
+.gym-cards-overlay {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+.search-box {
+    margin: 15px auto;
+    max-width: 100%;
+}
+
+.search-icon-button {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search-icon-button img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+.search-box input {
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+@media (min-width: 768px) {
+    .gym-locator-wrapper {
+        flex-direction: row;
+    }
+
+    .gym-map-container {
+        height: 100vh;
+    }
+
+    #gym-list {
+        width: 400px;
+        height: 100vh;
+        max-height: none;
+        padding-right: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    #gym-list {
+        width: 450px;
+    }
+
+    .cards-body {
+        padding: 25px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #gym-list {
+        width: 520px;
+    }
+
+    .cards-body {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .gym-card {
+        padding: 0.75rem;
+    }
+
+    .cards-body {
+        padding: 15px;
+    }
+
+    .search-box input {
+        padding: 8px 12px;
+    }
+}
+
+
+.gym-status {
+    font-weight: bold;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 2px 10px;
+    margin-left: 10px;
+}
+
+.gym-status.open {
+    color: #00C27A;
+    border-color: #00C27A;
+}
+
+.gym-status.closed {
+    color: #FF033E;
+    border-color: #EF0037;
+}
+
+.gym-gallery {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.gym-gallery h5 {
+    margin-bottom: 1rem;
+}
+
+#gym-additional-images {
+    gap: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd #f8f9fa;
+}
+#gym-additional-images img {
+    border-radius: 8px;
+    height: 100px;
+    object-fit: cover;
+}
+
+#gym-additional-images::-webkit-scrollbar {
+    height: 6px;
+}
+
+#gym-additional-images::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+#gym-additional-images::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 3px;
+}
+
+.gym-gallery img {
+    transition: transform 0.3s ease;
+}
+
+.gym-gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gym-card {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    padding: 1rem;
+    width: 100%;
+}
+
+.gym-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #00C27A;
+  border-color: #00C27A;
+}
+
+.status-badge.closed {
+  border-color: #ccc;
+  color: #ccc;
+}
+
+.gym-distance {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.gym-title {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.gym-address {
+  color: #444;
+  margin: 0.2rem 0 1rem;
+}
+
+.visit-gym-link {
+  color: gold;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.gym-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.gym-card .card-body {
+    padding: 15px;
+}
+
+.gym-card .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.gym-card .card-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-outline-primary {
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+}
+
+
+.mobile-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.mobile-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.mobile-header {
+    display: none;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.amenities-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.filter-text-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #6c757d;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #6c757d;
+    text-underline-offset: 3px;
+}
+
+.filter-text-btn:hover {
+    color: #495057;
+    text-decoration-color: #495057;
+}
+
+.amenities-filter-container {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        max-width: 45vh;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+
+.amenities-columns-container {
+    display: flex;
+    gap: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #adb5bd #f8f9fa;
+}
+
+.amenities-columns-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.amenities-columns-container::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+.amenities-columns-container::-webkit-scrollbar-thumb {
+    background-color: #adb5bd;
+    border-radius: 3px;
+}
+
+
+.amenities-column {
+    flex: 1;
+    min-width: 0;
+}
+
+
+.amenities-filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+
+@media (max-width: 767.98px) {
+    .amenities-columns-container {
+        flex-direction: column;
+        max-height: 200px;
+    }
+
+    .amenities-column {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .gym-locator-wrapper {
+        flex-direction: column;
+    }
+
+    .gym-list-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto;
+        padding: 15px;
+    }
+
+    .gym-map-container {
+        display: none;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .gym-map-container.active {
+        display: block;
+    }
+
+    .gym-list-container.hidden {
+        display: none;
+    }
+
+    #gym-list {
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+    }
+}

@@ -8,11 +8,11 @@ logger = logging.getLogger(__name__)
 def gym_detail_api(request, gym_id):
     try:
         gym = get_object_or_404(Gym, id=gym_id)
-        logger.info(f"Загрузка зала: {gym.name}")
-        logger.info(f"Часы: {gym.opening_hours_weekdays} / {gym.opening_hours_saturday} / {gym.opening_hours_sunday}")
+        logger.info(f"loading gtm: {gym.name}")
+        logger.info(f"Time: {gym.opening_hours_weekdays} / {gym.opening_hours_saturday} / {gym.opening_hours_sunday}")
         ...
     except Exception as e:
-        logger.exception("Ошибка при загрузке gym_detail_api")
+        logger.exception("Erorr in loading gym_detail_api")
         return JsonResponse({'error': 'Internal server error'}, status=500)
 
 def gym_locator(request):
@@ -28,7 +28,25 @@ def gym_locator(request):
             'is_open': is_open,
             'status': 'OPEN' if is_open else 'CLOSED',
         })
-    return render(request, 'google_maps/map.html', {'gyms': gyms})
+
+    amenities_list = [
+        "Aqua Classes", "Basketball Court", "Boxing", "Cardio Cinema®",
+        "Cardio Equipment", "Chiropractic Services", "Circuit Training",
+        "Cold Plunge", "Compression Therapy", "Coworking Space", "DEKA",
+        "Free Weights", "Functional Training", "Gold's Burn®", "Gold's Fit®",
+        "Group Cycle", "Group Exercise", "Gym80 Equipment", "Hyrox",
+        "inBody Scanning", "Kid's Club", "LesMills Classes", "Locker Rooms",
+        "Lounge Area", "Massage", "Mind & Body Studio", "Nutrition Counseling",
+        "Olympic Lifting Platforms", "Outdoor Workout Area", "Percussion Therapy",
+        "Personal Training", "Physical Therapy", "Pickleball", "Pilates", "Pool",
+        "Posing Room", "Pro Shop", "Racquetball Courts", "Recovery Area",
+        "Red Light Therapy", "Resistance Machines", "Sauna", "Small Group Training",
+        "Smoothie Bar", "Spa", "Steam Room", "Strength Equipment", "Swim Lessons",
+        "Tanning", "Tennis", "Towel Service", "Track", "Turf Area",
+        "Wellness Services", "WiFi", "Women's Only Area"
+    ]
+
+    return render(request, 'google_maps/map.html', {'gyms': gyms, 'amenities_list': amenities_list})
 
 
 def gym_detail_api(request, gym_id):
@@ -59,7 +77,6 @@ def gym_detail_api(request, gym_id):
         return JsonResponse(data)
     except Gym.DoesNotExist:
         return JsonResponse({'error': 'Gym not found'}, status=404)
-
 
 def parse_hours(hours_str):
     if not hours_str:

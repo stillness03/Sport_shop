@@ -4,6 +4,9 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+</head>
     <div>
         <div class="windowp d-flex bg-white p-4 mb-4 mx-2 rounded">
             <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
