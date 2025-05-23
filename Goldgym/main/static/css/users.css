@@ -512,15 +512,6 @@ h2 {
     color: var(--dark-color);
 }
 
-.form-control {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    transition: var(--transition);
-    margin-bottom: 1rem;
-}
 
 .form-control:focus {
     border-color: var(--primary-color);

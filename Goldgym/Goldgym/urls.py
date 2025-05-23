@@ -18,7 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler400, handler403, handler404, handler500
+from main import views
 
+handler400 = 'main.views.error_400'
+handler403 = 'main.views.error_403'
+handler404 = 'main.views.error_404'
+handler500 = 'main.views.error_500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +34,10 @@ urlpatterns = [
     path('payment/', include('payment.urls', namespace='payment')),
     path('calculator/', include('calculator.urls', namespace='calculator')),
     path('', include('main.urls', namespace='main')),
+    path('400/', views.error_400, kwargs={'exception': Exception('Bad Request')}),
+    path('403/', views.error_403, kwargs={'exception': Exception('Permission Denied')}),
+    path('404/', views.error_404, kwargs={'exception': Exception('Not Found')}),
+    path('500/', views.error_500),
 ]
 
 if settings.DEBUG:

@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock title %}</title>
 
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--  bootstrap   -->
@@ -97,6 +99,7 @@
     <link rel="stylesheet" href="{% static 'css/map.css' %}">
 </head>
 <body>
+<div class="wrapper">
      <header class="header sticky-top">
         <div class="header-container">
             <div class="header-logo">
@@ -147,7 +150,7 @@
     {% endblock content %}
     </div>
 
-    <footer class="footer ">
+    <footer class="footer {% if not is_index_page %}footer-spaced{% endif %}">
         <div class="d-flex justify-content-between align-items-start mb-1">
             <h2 class="footer-title mb-0">STRONGER STARTS HERE</h2>
             <div class="social-icons">
@@ -177,7 +180,7 @@
 
         <p class="footer-copyright">© 2024 GOLD'S GYM – ALL RIGHTS RESERVED</p>
     </footer>
-
+</div>
 
 
     <!--  js bootstrap  -->

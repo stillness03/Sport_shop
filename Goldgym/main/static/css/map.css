@@ -382,9 +382,7 @@
     color: #6c757d;
     font-weight: 500;
     cursor: pointer;
-    text-decoration: underline;
     text-decoration-color: #6c757d;
-    text-underline-offset: 3px;
 }
 
 .filter-text-btn:hover {

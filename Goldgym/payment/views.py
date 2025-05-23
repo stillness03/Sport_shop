@@ -16,10 +16,10 @@ def payment_process(request):
 
     if request.method == 'POST':
         success_url = request.build_absolute_uri(
-            reverse('payment:completed')
-        )
+            reverse('main:product_list')
+        ) + '?paid=1'
         cancel_url = request.build_absolute_uri(
-            reverse('payment:canceled')
+            reverse('main:product_list') + '?canceled=1'
         )
         session_data = {
             'mode': 'payment',
@@ -47,8 +47,7 @@ def payment_process(request):
 
 
 def payment_completed(request):
-    return render(request, 'payment/completed.html')
-
+    return redirect(reverse('main:product_list') + '?paid=1')
 
 def payment_canceled(request):
-    return render(request, 'payment/canceled.html')
+    return redirect(reverse('main:product_list') + '?canceled=1')

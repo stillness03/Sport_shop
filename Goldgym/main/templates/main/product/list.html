@@ -23,6 +23,17 @@
             <div class="mainvl"></div>
         </div>
         <div class="main">
+            {% if request.GET.paid == '1' %}
+            <div class="alert alert-success payment-alert">
+              Payment was successful! Thank you for ordering.
+            </div>
+            {% endif %}
+
+            {% if request.GET.canceled == '1' %}
+            <div class="alert alert-danger payment-alert">
+              Payment has been canceled!
+            </div>
+            {% endif %}
             <div class="main-title">
                 {% if category %}{{ category.name }}{% else %}Products{% endif %}
             </div>
@@ -67,6 +78,31 @@
 
 {% block extra_js %}
 <script>
+function fadeOutAlert(alert) {
+  let opacity = 1;
+  const duration = 500;
+  const start = performance.now();
+
+  function animate(time) {
+    const elapsed = time - start;
+    const progress = elapsed / duration;
+    opacity = 1 - progress;
+
+    alert.style.opacity = opacity;
+    alert.style.transform = `translateX(-50%) translateY(${-50 * progress}px)`;
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      alert.remove();
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+setTimeout(() => fadeOutAlert(alert), 2000);
+
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
     if (menuToggle) {
